@@ -1,0 +1,519 @@
+/* General styling */
+body,
+a {
+  font-family: var(--ff-body);
+  text-decoration: none;
+}
+
+h1,
+h2 {
+  font-size: var(--fs-subheadlines);
+  font-family: var(--ff-headlines);
+  font-weight: var(--fw-regular);
+}
+
+p {
+  font-weight: var(--fw-regular);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap; /* added line */
+  border: 0;
+}
+
+/* Specific styling */
+
+/* header */
+
+.primary-header {
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--white-clr);
+}
+
+.primary-navigation {
+  text-transform: uppercase;
+  position: absolute;
+  width: 50%;
+  height: 100vh;
+  right: 0;
+  top: 0;
+  background: var(--light-secondary-clr);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  transform: translateX(100%);
+}
+
+.primary-navigation[data-visible] {
+  display: block;
+  position: fixed;
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.primary-navigation ul {
+  margin-top: 10em;
+}
+
+.nav-list a {
+  font-weight: var(--fw-bold);
+  color: var(--main-clr);
+  padding: 2em 4em;
+  display: block;
+  width: 100%;
+}
+
+.icon-account {
+  position: absolute;
+  z-index: 999;
+  width: 1.8em;
+  right: 0;
+  margin-right: 1.5em;
+  margin-top: 7em;
+}
+
+.icon-account-desktop {
+  display: none;
+}
+
+.coffeeco-logo {
+  width: 5em;
+  margin: 1em 2em;
+}
+
+.mobile-nav-toggle {
+  z-index: 999;
+  width: 3em;
+  border: none;
+  background: none;
+  margin: 1em 2em;
+}
+
+@media (min-width: 60em) {
+  .primary-navigation {
+    position: relative;
+    width: unset;
+    height: unset;
+    background: none;
+    opacity: 1;
+    transform: translateX(0%);
+  }
+
+  .primary-navigation ul {
+    display: flex;
+    flex-direction: row;
+    margin-top: 0em;
+    gap: 0em;
+    float: left;
+  }
+
+  .nav-list a {
+    padding: 2em 3em;
+  }
+
+  .coffeeco-logo {
+    position: relative;
+    margin-top: 1.2em;
+  }
+
+  .icon-account-desktop {
+    display: block;
+    width: 1.8em;
+    margin: 2em;
+  }
+
+  .mobile-nav-toggle {
+    display: none;
+  }
+}
+
+/* hover nav*/
+
+.nav-list a:hover {
+  background: var(--main-clr);
+  color: var(--white-clr);
+  opacity: 80%;
+}
+
+.icon-account svg:hover {
+  opacity: 60%;
+}
+
+.icon-account-desktop svg:hover {
+  opacity: 60%;
+}
+
+.icon-account svg:active {
+  opacity: 60%;
+}
+
+/* main */
+
+/* section: hero */
+
+section.hero {
+  color: var(--light-secondary-clr);
+  background-color: var(--main-clr);
+  height: 100vh;
+  animation: moveDown 1s ease-in-out forwards;
+  opacity: 0;
+}
+
+.background-restaurant {
+  width: 100%;
+  height: 50vh;
+  object-fit: cover;
+}
+
+.background-restaurant-coffee {
+  display: none;
+}
+
+.flex-cup {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.coffee-cup {
+  height: 40vh;
+  display: flex;
+  align-self: flex-end;
+  right: 0;
+  margin-top: -30vh;
+}
+
+.hero-text {
+  margin: 1.5em;
+  margin-top: -8vh;
+  z-index: 999;
+}
+
+.hero-text h1 {
+  font-size: var(--fs-hero-headline);
+  line-height: 100%;
+}
+
+.hero-text p {
+  max-width: 400px;
+  font-size: var(--fs-hero-text);
+  line-height: 150%;
+  margin-top: 1em;
+}
+
+.down-arrow {
+  position: absolute;
+  max-width: 1.5em;
+  margin-right: 1.2em;
+  margin-bottom: 3em;
+  animation: moveArrow 1s alternate-reverse infinite;
+  bottom: 0;
+  right: 0;
+}
+
+/* animations*/
+
+@keyframes moveArrow {
+  from {
+    transform: translateY(-15px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes moveDown {
+  from {
+    transform: translateY(-100px);
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (min-width: 50em) {
+  section.hero {
+    padding-top: 20vh;
+    top: 0;
+  }
+
+  .background-restaurant {
+    display: none;
+  }
+
+  .background-restaurant-coffee {
+    display: block;
+    max-width: 50vw;
+    max-height: 80vh;
+    float: right;
+    margin-top: -1em;
+  }
+
+  .coffee-cup {
+    display: none;
+  }
+
+  .hero-text {
+    margin: 5%;
+    margin-top: 0em;
+  }
+
+  .hero-text p {
+    max-width: 600px;
+    font-weight: var(--fw-bold);
+    margin-top: 3em;
+    line-height: 190%;
+  }
+
+  .down-arrow {
+    max-width: 2em;
+    margin: 3em;
+    left: 0;
+  }
+}
+
+/* section: menu */
+
+.menu h2 {
+  color: var(--main-clr);
+  margin-left: 0.5em;
+  margin-top: 1em;
+}
+
+.flex-menu {
+  display: flex;
+  flex-direction: column;
+  margin: 2em 8%;
+}
+
+.menu-point {
+  position: relative;
+  width: 100%;
+}
+
+.menu-img {
+  margin-top: 2em;
+  border-radius: 30px;
+}
+
+.menu-btn {
+  position: absolute;
+  width: 90%;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -90%);
+  font-size: var(--fs-menu-btn);
+  font-weight: var(--fw-bold);
+  background-color: var(--main-clr);
+  color: var(--white-clr);
+  border: none;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 1em 2em;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 9 17' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 15.3249L6.89632 9.42854C7.59267 8.73219 7.59267 7.59271 6.89632 6.89636L1 1' stroke='white' stroke-width='2' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+  background-repeat: no-repeat;
+  background-position: right 40px center;
+  background-size: 4%;
+}
+
+.menu-btn:hover,
+.menu-btn:active {
+  background-color: hsl(17, 20%, 24%);
+}
+
+@media (min-width: 60em) {
+  .flex-menu {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 5em 6em;
+    gap: 5em;
+  }
+
+  .menu-btn {
+    background-size: 3%;
+  }
+}
+
+/* section: our mission */
+
+section.our-mission {
+  background-color: var(--main-clr);
+  color: var(--white-clr);
+}
+
+section.our-mission h2 {
+  color: var(--white-clr);
+  padding: 1em 0em;
+}
+
+.icon-mission svg {
+  width: 7em;
+  height: 7em;
+  padding: 1em;
+  border-radius: 10px;
+  background-color: var(--white-clr);
+  margin: auto;
+}
+
+.mission-bulletpoints {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+
+.mission-bulletpoints p {
+  font-size: var(--fs-longtext);
+  max-width: 15em;
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+@media (min-width: 80em) {
+  .flex-mission {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 5em 10em;
+    gap: 3em;
+  }
+
+  .icon-mission svg {
+    width: 10em;
+    height: 10em;
+    margin-bottom: 2em;
+  }
+
+  .mission-bulletpoints p {
+    margin-bottom: 5em;
+  }
+}
+
+/* section: locations */
+
+.map {
+  height: 0;
+  overflow: hidden;
+  padding-bottom: 56%;
+  position: relative;
+  margin: 3em;
+}
+
+.map iframe {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.visit {
+  max-width: 20em;
+  font-size: var(--fs-location-headline);
+  font-family: "DM Serif Display", serif;
+  color: var(--main-clr);
+  margin: 1em 1.8em;
+}
+
+@media (min-width: 70em) {
+  .locations {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .map {
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 56%;
+    position: relative;
+    margin: 5em;
+  }
+
+  .visit {
+    max-width: 20em;
+    color: var(--main-clr);
+    margin: 2em 1.8em;
+  }
+}
+
+/* section: footer */
+
+footer {
+  background-color: var(--main-clr);
+}
+
+.footer-nav {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--fs-footer);
+  font-weight: var(--fw-bold);
+  line-height: 220%;
+  margin-left: 3em;
+  padding-top: 3em;
+}
+
+.footer-nav a {
+  color: var(--white-clr);
+  font-size: var(--fs-footer);
+  font-weight: var(--fw-bold);
+  margin-top: 4em;
+}
+
+.social-media {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 3em;
+}
+
+.social-media p {
+  color: var(--white-clr);
+  font-size: var(--fs-footer);
+  font-weight: var(--fw-bold);
+  margin-bottom: 1em;
+}
+
+.icons {
+  display: flex;
+  gap: 2em;
+  margin-bottom: 3em;
+}
+
+/* hover footer */
+
+.footer-nav a:hover,
+.footer-nav a:active,
+.icons svg:hover,
+.icons svg:active {
+  opacity: 70%;
+}
+
+@media (min-width: 60em) {
+  footer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-nav {
+    flex-direction: row;
+    gap: 5em;
+  }
+
+  .social-media {
+    justify-self: end;
+    margin-top: 5em;
+    margin-right: 4em;
+  }
+}
